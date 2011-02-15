@@ -7,5 +7,5 @@ parser = CssParser::Parser.new
 parser.load_file!('test.css')
 
 parser.each_selector() do |selector, declarations, specificity|
-  puts selector
+  puts selector if /^\./.match(selector)
 end
