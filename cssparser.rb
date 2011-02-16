@@ -15,9 +15,8 @@ parser.each_selector do |selector, declarations, specificity|
     matches.each do |match|
       match[0].gsub!("-", "\\-")
       grepCommand = "grep -riI #{match[0]} #{searchDirectory}\\*"
-      grep -riI match[0] searchDirectory\*
       puts grepCommand
-      #system grepCommand
+      system grepCommand
       puts $?
     end
   end
