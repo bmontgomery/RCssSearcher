@@ -4,15 +4,20 @@ require 'css_parser'
 include CssParser
 
 filePath = ARGV[0]
+searchDirectory = ARGV[1]
 
 parser = CssParser::Parser.new
 parser.load_file!(filePath)
 
 parser.each_selector do |selector, declarations, specificity|
-  matches = selector.scan(/\.([a-z0-9-_]+)/i)
+  matches = selector.scan(/\.([a-z0-9\-_]+)/i)
   if matches.length > 0 then
     matches.each do |match|
-      puts match
+      match[0].gsub!("-", "\\-")
+      grepCommand = "grep -riI #{match[0]} #{searchDirectory}\\*"
+      puts grepCommand
+      system grepCommand
+      puts $?
     end
   end
 end
