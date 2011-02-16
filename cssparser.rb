@@ -5,6 +5,11 @@ include CssParser
 
 filePath = ARGV[0]
 searchDirectory = ARGV[1]
+puts "filePath: #{filePath}, searchDirectory: #{searchDirectory}"
+
+if searchDirectory.nil? or searchDirectory.length == 0 then
+  searchDirectory = "*"
+end
 
 parser = CssParser::Parser.new
 parser.load_file!(filePath)
@@ -14,7 +19,7 @@ parser.each_selector do |selector, declarations, specificity|
   if matches.length > 0 then
     matches.each do |match|
       match[0].gsub!("-", "\\-")
-      grepCommand = "grep -riI #{match[0]} #{searchDirectory}\\*"
+      grepCommand = "grep -riI #{match[0]} \"#{searchDirectory}\""
       puts grepCommand
       system grepCommand
     end
