@@ -24,7 +24,7 @@ parser.each_selector do |selector, declarations, specificity|
       if searchTerms[term].nil? then
         puts "searching for \"#{term}\"..."
         match[0].gsub!("-", "\\-")
-        output = `grep -riIn --exclude-dir=\"\\.svn\" --exclude=\"*.css\" #{match[0]} \"#{searchDirectory}\"`
+        output = `grep -rIn --exclude-dir=\"\\.svn\" --exclude=\"*.css\" #{match[0]} \"#{searchDirectory}\"`
         outlines = output.split("\n")
         searchTerms[term] = outlines.length
       end
