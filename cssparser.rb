@@ -18,10 +18,11 @@ parser.each_selector do |selector, declarations, specificity|
   matches = selector.scan(/\.([a-z0-9\-_]+)/i)
   if matches.length > 0 then
     matches.each do |match|
-      puts "searching for \"#{match[0]}\""
+      print "searching for \"#{match[0]}\"..."
       match[0].gsub!("-", "\\-")
-      grepCommand = "grep -riI #{match[0]} \"#{searchDirectory}\""
-      system grepCommand
+      output = `grep -riIn #{match[0]} \"#{searchDirectory}\"`
+      print output == "" ? "not found" : "found"
+      print "\n"
     end
   end
 end
