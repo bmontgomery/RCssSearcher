@@ -17,7 +17,6 @@ parser.each_selector do |selector, declarations, specificity|
       grepCommand = "grep -riI #{match[0]} #{searchDirectory}\\*"
       puts grepCommand
       system grepCommand
-      puts $?
     end
   end
 end
