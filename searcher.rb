@@ -17,7 +17,7 @@ files.each do |fileName|
   term = File.basename(fileName)
   if searchTerms[term].nil? then
     puts "searching for \"#{term}\"..."
-    output = `grep -riIn --exclude-dir=\"\\.svn\" --exclude=\"*.vbproj\" #{term} \"#{searchDirectory}\"`
+    output = `grep -riIn --exclude-dir=\"\\.svn\" --exclude=\"*.vbproj\" \"#{term}\" \"#{searchDirectory}\"`
     outlines = output.split("\n")
     searchTerms[term] = outlines.length
   end
