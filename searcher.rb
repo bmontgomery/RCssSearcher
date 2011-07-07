@@ -1,7 +1,7 @@
 # first check for incoming parameters
 if ARGV.length < 2
-	puts "Usage: searcher <image directory> <search directory>"
-	exit
+  puts "Usage: searcher <image directory> <search directory>"
+  exit
 end
 
 imageDirectory = String.new(ARGV[0])
@@ -13,7 +13,7 @@ searchDirectory.gsub("\\", "/")
 
 # make paths end with trailing slashes
 if not imageDirectory.end_with?("/") then
-	imageDirectory.concat("/")
+  imageDirectory.concat("/")
 end
 
 # we only do the ending-slash normalization for the search directory if it's non-empty
@@ -21,7 +21,7 @@ end
 if searchDirectory.nil? or searchDirectory.length == 0 then
   searchDirectory = "*"
 elsif not searchDirectory.end_with?("/") then
-	searchDirectory.concat("/")
+  searchDirectory.concat("/")
 end
 
 puts "image directory: #{imageDirectory}, search directory: #{searchDirectory}"
