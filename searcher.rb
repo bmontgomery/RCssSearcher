@@ -1,4 +1,3 @@
-
 # check if end_with? is defined - if not, define it here
 if not String.respond_to?('end_with?') then
 	class String 
@@ -16,6 +15,7 @@ end
 
 # load in arguments
 imageDirectory = String.new(ARGV[0])
+# if search directory is not provided, default to .
 if ARGV.length > 1 then
   searchDirectory = String.new(ARGV[1])
 else
@@ -33,7 +33,7 @@ end
 
 # however, the search directory path should not end with a trailing slash
 if searchDirectory.end_with?("/") then
-	searchDirectory.sub!(/\/+$/, '')
+  searchDirectory.sub!(/\/+$/, '')
 end
 
 puts "Image directory: #{imageDirectory}"
