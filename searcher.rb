@@ -1,11 +1,26 @@
-# first check for incoming parameters
-if ARGV.length < 2
+
+# check if end_with? is defined - if not, define it here
+if not String.respond_to?('end_with?') then
+	class String 
+		def end_with? (substr)
+			!self.match(/^#{Regexp.escape(substr)}/).nil?		
+		end
+	end
+end
+
+# first check that at least an image directory was provided
+if ARGV.length < 1 then
   puts "Usage: searcher <image directory> <search directory>"
   exit
 end
 
+# load in arguments
 imageDirectory = String.new(ARGV[0])
-searchDirectory = String.new(ARGV[1])
+if ARGV.length > 1 then
+  searchDirectory = String.new(ARGV[1])
+else
+  searchDirectory = ""
+end
 
 # normalize file paths, substitute \ with /
 imageDirectory.gsub!("\\", "/")
@@ -24,11 +39,12 @@ elsif not searchDirectory.end_with?("/") then
   searchDirectory.concat("/")
 end
 
-puts "image directory: #{imageDirectory}, search directory: #{searchDirectory}"
+puts "Image directory: #{imageDirectory}"
+puts "Search directory: #{searchDirectory}"
 
 # collect list of images in folder
-files = Dir.glob("#{imageDirectory}*.{jpg,png,gif}")
-puts "found #{files.length} files"
+files = Dir.glob("#{imageDirectory}*.{jpg,jpeg,png,gif}")
+puts "Found #{files.length} files"
 
 searchTerms = {}
 
