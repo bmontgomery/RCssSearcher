@@ -1,3 +1,16 @@
+=begin
+
+= NAME
+searcher.rb
+A script for determining unused image files
+
+= SYNOPSIS
+This script serves as a wrapper around grep for determining unused (JPEG, PNG, or GIF) image files by searching for references to them in plain text.
+The first (required) parameter provided is the path to the image directory.
+The second parameter provided is the path to the search directory.  If this parameter is omitted, it defaults to '.'.
+
+=end
+
 # check if end_with? is defined - if not, define it here
 if not String.respond_to?('end_with?') then
 	class String 
@@ -9,7 +22,7 @@ end
 
 # first check that at least an image directory was provided
 if ARGV.length < 1 then
-  puts "Usage: searcher <image directory> <search directory>"
+  puts "Usage: searcher <image directory> [search directory]"
   exit
 end
 
